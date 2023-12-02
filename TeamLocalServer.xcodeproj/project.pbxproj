@@ -8,12 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		D7EC27982B19C0C300065A0E /* TeamLocalServerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27972B19C0C300065A0E /* TeamLocalServerApp.swift */; };
-		D7EC279A2B19C0C300065A0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27992B19C0C300065A0E /* ContentView.swift */; };
 		D7EC279C2B19C0C400065A0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7EC279B2B19C0C400065A0E /* Assets.xcassets */; };
 		D7EC279F2B19C0C400065A0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7EC279E2B19C0C400065A0E /* Preview Assets.xcassets */; };
 		D7EC27A92B19C0C500065A0E /* TeamLocalServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27A82B19C0C500065A0E /* TeamLocalServerTests.swift */; };
 		D7EC27B32B19C0C500065A0E /* TeamLocalServerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27B22B19C0C500065A0E /* TeamLocalServerUITests.swift */; };
 		D7EC27B52B19C0C500065A0E /* TeamLocalServerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27B42B19C0C500065A0E /* TeamLocalServerUITestsLaunchTests.swift */; };
+		D7EC27C32B19C11000065A0E /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27C22B19C11000065A0E /* NetworkSession.swift */; };
+		D7EC27C52B19C50900065A0E /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27C42B19C50900065A0E /* ApiError.swift */; };
+		D7EC27C72B19C52A00065A0E /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27C62B19C52A00065A0E /* HTTPMethod.swift */; };
+		D7EC27CC2B19D09100065A0E /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27CB2B19D09100065A0E /* TeamMember.swift */; };
+		D7EC27CE2B19D0F400065A0E /* TeamMemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27CD2B19D0F400065A0E /* TeamMemberService.swift */; };
+		D7EC27D02B19D1D400065A0E /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27CF2B19D1D400065A0E /* ApiEndpoint.swift */; };
+		D7EC27D42B19D48A00065A0E /* TeamMemberProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27D32B19D48A00065A0E /* TeamMemberProvider.swift */; };
+		D7EC27D62B19DB8300065A0E /* GenericApiHTTPRequestMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27D52B19DB8300065A0E /* GenericApiHTTPRequestMapper.swift */; };
+		D7EC27D82B19DC0500065A0E /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27D72B19DC0500065A0E /* HTTPClient.swift */; };
+		D7EC27DC2B19DE7200065A0E /* TeamMemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27DB2B19DE7200065A0E /* TeamMemberListView.swift */; };
+		D7EC27DE2B19DEA400065A0E /* TeamMemberListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27DD2B19DEA400065A0E /* TeamMemberListViewModel.swift */; };
+		D7EC27E22B1A1C3500065A0E /* TeamMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27E12B1A1C3500065A0E /* TeamMemberViewModel.swift */; };
+		D7EC27E42B1A1D4600065A0E /* TeamMemberInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27E32B1A1D4600065A0E /* TeamMemberInfoView.swift */; };
+		D7EC27E72B1A1EEC00065A0E /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27E62B1A1EEC00065A0E /* AppColors.swift */; };
+		D7EC27E92B1A1F7A00065A0E /* TeamMember+Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27E82B1A1F7A00065A0E /* TeamMember+Samples.swift */; };
+		D7EC27EE2B1A6D6200065A0E /* SectionedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27ED2B1A6D6200065A0E /* SectionedTextField.swift */; };
+		D7EC27F02B1A6D7A00065A0E /* SectionTitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27EF2B1A6D7A00065A0E /* SectionTitleText.swift */; };
+		D7EC27F22B1A6E1700065A0E /* TeamMemberEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EC27F12B1A6E1700065A0E /* TeamMemberEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +53,6 @@
 /* Begin PBXFileReference section */
 		D7EC27942B19C0C300065A0E /* TeamLocalServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamLocalServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EC27972B19C0C300065A0E /* TeamLocalServerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamLocalServerApp.swift; sourceTree = "<group>"; };
-		D7EC27992B19C0C300065A0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D7EC279B2B19C0C400065A0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7EC279E2B19C0C400065A0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D7EC27A42B19C0C500065A0E /* TeamLocalServerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeamLocalServerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +60,24 @@
 		D7EC27AE2B19C0C500065A0E /* TeamLocalServerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeamLocalServerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EC27B22B19C0C500065A0E /* TeamLocalServerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamLocalServerUITests.swift; sourceTree = "<group>"; };
 		D7EC27B42B19C0C500065A0E /* TeamLocalServerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamLocalServerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D7EC27C22B19C11000065A0E /* NetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
+		D7EC27C42B19C50900065A0E /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		D7EC27C62B19C52A00065A0E /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		D7EC27CB2B19D09100065A0E /* TeamMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMember.swift; sourceTree = "<group>"; };
+		D7EC27CD2B19D0F400065A0E /* TeamMemberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberService.swift; sourceTree = "<group>"; };
+		D7EC27CF2B19D1D400065A0E /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
+		D7EC27D32B19D48A00065A0E /* TeamMemberProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberProvider.swift; sourceTree = "<group>"; };
+		D7EC27D52B19DB8300065A0E /* GenericApiHTTPRequestMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericApiHTTPRequestMapper.swift; sourceTree = "<group>"; };
+		D7EC27D72B19DC0500065A0E /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		D7EC27DB2B19DE7200065A0E /* TeamMemberListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberListView.swift; sourceTree = "<group>"; };
+		D7EC27DD2B19DEA400065A0E /* TeamMemberListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberListViewModel.swift; sourceTree = "<group>"; };
+		D7EC27E12B1A1C3500065A0E /* TeamMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberViewModel.swift; sourceTree = "<group>"; };
+		D7EC27E32B1A1D4600065A0E /* TeamMemberInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberInfoView.swift; sourceTree = "<group>"; };
+		D7EC27E62B1A1EEC00065A0E /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		D7EC27E82B1A1F7A00065A0E /* TeamMember+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamMember+Samples.swift"; sourceTree = "<group>"; };
+		D7EC27ED2B1A6D6200065A0E /* SectionedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedTextField.swift; sourceTree = "<group>"; };
+		D7EC27EF2B1A6D7A00065A0E /* SectionTitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleText.swift; sourceTree = "<group>"; };
+		D7EC27F12B1A6E1700065A0E /* TeamMemberEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				D7EC27972B19C0C300065A0E /* TeamLocalServerApp.swift */,
-				D7EC27992B19C0C300065A0E /* ContentView.swift */,
+				D7EC27E52B1A1EE500065A0E /* Resources */,
+				D7EC27C82B19D04C00065A0E /* Services */,
+				D7EC27C12B19C0FE00065A0E /* Network */,
+				D7EC27D92B19DE4F00065A0E /* Features */,
 				D7EC279B2B19C0C400065A0E /* Assets.xcassets */,
 				D7EC279D2B19C0C400065A0E /* Preview Content */,
 			);
@@ -125,6 +162,92 @@
 				D7EC27B42B19C0C500065A0E /* TeamLocalServerUITestsLaunchTests.swift */,
 			);
 			path = TeamLocalServerUITests;
+			sourceTree = "<group>";
+		};
+		D7EC27C12B19C0FE00065A0E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27D72B19DC0500065A0E /* HTTPClient.swift */,
+				D7EC27C22B19C11000065A0E /* NetworkSession.swift */,
+				D7EC27C42B19C50900065A0E /* ApiError.swift */,
+				D7EC27C62B19C52A00065A0E /* HTTPMethod.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D7EC27C82B19D04C00065A0E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27CF2B19D1D400065A0E /* ApiEndpoint.swift */,
+				D7EC27D52B19DB8300065A0E /* GenericApiHTTPRequestMapper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D7EC27CA2B19D08800065A0E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27CB2B19D09100065A0E /* TeamMember.swift */,
+				D7EC27E82B1A1F7A00065A0E /* TeamMember+Samples.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D7EC27D12B19D45600065A0E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27CD2B19D0F400065A0E /* TeamMemberService.swift */,
+				D7EC27D32B19D48A00065A0E /* TeamMemberProvider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D7EC27D92B19DE4F00065A0E /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27DA2B19DE5D00065A0E /* TeamMember */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D7EC27DA2B19DE5D00065A0E /* TeamMember */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27CA2B19D08800065A0E /* Models */,
+				D7EC27D12B19D45600065A0E /* Services */,
+				D7EC27E02B19E0B100065A0E /* ViewModels */,
+				D7EC27DF2B19E0AB00065A0E /* Views */,
+			);
+			path = TeamMember;
+			sourceTree = "<group>";
+		};
+		D7EC27DF2B19E0AB00065A0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27DB2B19DE7200065A0E /* TeamMemberListView.swift */,
+				D7EC27E32B1A1D4600065A0E /* TeamMemberInfoView.swift */,
+				D7EC27F12B1A6E1700065A0E /* TeamMemberEditView.swift */,
+				D7EC27EF2B1A6D7A00065A0E /* SectionTitleText.swift */,
+				D7EC27ED2B1A6D6200065A0E /* SectionedTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D7EC27E02B19E0B100065A0E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27DD2B19DEA400065A0E /* TeamMemberListViewModel.swift */,
+				D7EC27E12B1A1C3500065A0E /* TeamMemberViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D7EC27E52B1A1EE500065A0E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC27E62B1A1EEC00065A0E /* AppColors.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +380,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7EC279A2B19C0C300065A0E /* ContentView.swift in Sources */,
+				D7EC27C32B19C11000065A0E /* NetworkSession.swift in Sources */,
+				D7EC27E42B1A1D4600065A0E /* TeamMemberInfoView.swift in Sources */,
+				D7EC27E92B1A1F7A00065A0E /* TeamMember+Samples.swift in Sources */,
+				D7EC27D42B19D48A00065A0E /* TeamMemberProvider.swift in Sources */,
+				D7EC27E22B1A1C3500065A0E /* TeamMemberViewModel.swift in Sources */,
+				D7EC27C52B19C50900065A0E /* ApiError.swift in Sources */,
+				D7EC27D62B19DB8300065A0E /* GenericApiHTTPRequestMapper.swift in Sources */,
+				D7EC27CC2B19D09100065A0E /* TeamMember.swift in Sources */,
+				D7EC27D82B19DC0500065A0E /* HTTPClient.swift in Sources */,
+				D7EC27F22B1A6E1700065A0E /* TeamMemberEditView.swift in Sources */,
+				D7EC27E72B1A1EEC00065A0E /* AppColors.swift in Sources */,
+				D7EC27DE2B19DEA400065A0E /* TeamMemberListViewModel.swift in Sources */,
+				D7EC27C72B19C52A00065A0E /* HTTPMethod.swift in Sources */,
+				D7EC27F02B1A6D7A00065A0E /* SectionTitleText.swift in Sources */,
 				D7EC27982B19C0C300065A0E /* TeamLocalServerApp.swift in Sources */,
+				D7EC27DC2B19DE7200065A0E /* TeamMemberListView.swift in Sources */,
+				D7EC27EE2B1A6D6200065A0E /* SectionedTextField.swift in Sources */,
+				D7EC27CE2B19D0F400065A0E /* TeamMemberService.swift in Sources */,
+				D7EC27D02B19D1D400065A0E /* ApiEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
