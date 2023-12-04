@@ -34,6 +34,32 @@ final class TeamMemberListViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func deleteTeamMembers() {
+        service
+            .deleteAll()
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    debugPrint(error.localizedDescription)
+                }
+            } receiveValue: { _ in }
+            .store(in: &cancellables)
+    }
+    
+    func deleteTeamMember(by id: Int) {
+        service
+            .delete(by: id)
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    debugPrint(error.localizedDescription)
+                }
+            } receiveValue: { _ in }
+            .store(in: &cancellables)
+    }
 }
 
 final class MockTeamMemberListDecorator: HTTPClient {

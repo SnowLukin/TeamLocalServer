@@ -8,22 +8,28 @@
 import Foundation
 
 struct GenericApiHTTPRequestMapper {
-    static let jsonDecoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
-    
     static func map<T>(data: Data, response: HTTPURLResponse) throws -> T where T: Decodable {
         if (200..<300) ~= response.statusCode {
             do {
-                return try jsonDecoder.decode(T.self, from: data)
+                return try JSONDecoder().snakeCased().decode(T.self, from: data)
             } catch {
                 throw ApiError.basicError(error)
             }
         }
         
-        if let error = try? jsonDecoder.decode(ApiErrorDTO.self, from: data) {
+        if let error = try? JSONDecoder().snakeCased().decode(ApiErrorDTO.self, from: data) {
+            throw ApiError.custom(error)
+        } else {
+            throw ApiError.emptyErrorWithStatusCode(response.statusCode.description)
+        }
+    }
+    
+    static func map(data: Data, response: HTTPURLResponse) throws {
+        if (200..<300) ~= response.statusCode {
+            return
+        }
+        
+        if let error = try? JSONDecoder().snakeCased().decode(ApiErrorDTO.self, from: data) {
             throw ApiError.custom(error)
         } else {
             throw ApiError.emptyErrorWithStatusCode(response.statusCode.description)

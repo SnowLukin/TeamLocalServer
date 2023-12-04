@@ -10,6 +10,9 @@ import Foundation
 enum TeamMemberProvider {
     case getMembers
     case getMember(Int)
+    case createMember(TeamMember)
+    case deleteMembers
+    case deleteMember(Int)
 }
 
 extension TeamMemberProvider: ApiEndpoint {
@@ -31,16 +34,18 @@ extension TeamMemberProvider: ApiEndpoint {
     
     var path: String {
         switch self {
-        case .getMembers:
+        case .getMembers, .createMember, .deleteMembers:
             "team-members"
-        case .getMember(let id):
+        case .getMember(let id), .deleteMember(let id):
             "team-members/\(id)"
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .getMembers, .getMember:
+        case .deleteMember, .deleteMembers:
+            nil
+        case .getMembers, .getMember, .createMember:
             ["Content-Type": "application/json"]
         }
     }
@@ -57,13 +62,19 @@ extension TeamMemberProvider: ApiEndpoint {
         switch self {
         case .getMembers, .getMember:
             return .GET
+        case .createMember:
+            return .POST
+        case .deleteMembers, .deleteMember:
+            return .DELETE
         }
     }
     
     var body: Data? {
         switch self {
-        case .getMembers, .getMember:
-            nil
+        case .getMembers, .getMember, .deleteMembers, .deleteMember:
+            return nil
+        case .createMember(let teamMember):
+            return try? JSONEncoder().snakeCased().encode(teamMember)
         }
     }
 }
