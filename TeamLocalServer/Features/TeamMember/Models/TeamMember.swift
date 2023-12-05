@@ -7,11 +7,21 @@
 
 import Foundation
 
-struct TeamMember: Identifiable, Codable {
+struct TeamMember: Identifiable, Codable, Hashable {
     let id: Int
     let name: String
     let surname: String
     let middleName: String
     let role: String
     let hiringDate: Date
+}
+
+extension TeamMember {
+    var initials: String {
+        "\(surname) \(name.first ?? " ").\(middleName.first ?? " ")."
+    }
+    
+    var fullName: String {
+        "\(surname) \(name) \(middleName)"
+    }
 }

@@ -28,22 +28,23 @@ extension URLSession: HTTPClient {
 }
 
 final class MockHTTPClient: HTTPClient {
-    var mockResponse: (Data, HTTPURLResponse)?
     
+    var response: (Data, HTTPURLResponse)?
+    var error: Error?
+
     func publisher(request: URLRequest) -> AnyPublisher<(Data, HTTPURLResponse), Error> {
-        if let response = mockResponse {
+        if let error = error {
+            return Fail(error: error).eraseToAnyPublisher()
+        }
+
+        if let response = response {
             return Just(response)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-        return Fail(error: URLError(.badServerResponse))
+
+        return Empty(completeImmediately: false)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
-    }
-    
-    static func mockData<T>(object: T) -> Data where T: Encodable {
-        let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        let jsonData = try? encoder.encode(object)
-        return jsonData ?? Data()
     }
 }

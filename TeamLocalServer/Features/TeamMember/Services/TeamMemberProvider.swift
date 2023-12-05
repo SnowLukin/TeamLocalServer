@@ -13,6 +13,7 @@ enum TeamMemberProvider {
     case createMember(TeamMember)
     case deleteMembers
     case deleteMember(Int)
+    case update(TeamMember)
 }
 
 extension TeamMemberProvider: ApiEndpoint {
@@ -38,6 +39,8 @@ extension TeamMemberProvider: ApiEndpoint {
             "team-members"
         case .getMember(let id), .deleteMember(let id):
             "team-members/\(id)"
+        case .update(let teamMember):
+            "team-members/\(teamMember.id)"
         }
     }
     
@@ -45,7 +48,7 @@ extension TeamMemberProvider: ApiEndpoint {
         switch self {
         case .deleteMember, .deleteMembers:
             nil
-        case .getMembers, .getMember, .createMember:
+        case .getMembers, .getMember, .createMember, .update:
             ["Content-Type": "application/json"]
         }
     }
@@ -66,6 +69,8 @@ extension TeamMemberProvider: ApiEndpoint {
             return .POST
         case .deleteMembers, .deleteMember:
             return .DELETE
+        case .update:
+            return .PUT
         }
     }
     
@@ -73,7 +78,7 @@ extension TeamMemberProvider: ApiEndpoint {
         switch self {
         case .getMembers, .getMember, .deleteMembers, .deleteMember:
             return nil
-        case .createMember(let teamMember):
+        case .createMember(let teamMember), .update(let teamMember):
             return try? JSONEncoder().snakeCased().encode(teamMember)
         }
     }

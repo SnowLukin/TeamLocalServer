@@ -10,20 +10,23 @@ import Combine
 
 final class TeamMemberListViewModel: ObservableObject {
     
-    private let service: TeamMemberService
+    let service: TeamMemberServiceProtocol
     
     @Published var teamMembers: [TeamMember] = []
+    @Published var isLoading = false
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(httpClient: HTTPClient = URLSession.shared) {
-        self.service = TeamMemberService(httpClient: httpClient)
+    init(service: TeamMemberServiceProtocol = TeamMemberService()) {
+        self.service = service
     }
     
     func loadTeamMembers() {
+        isLoading = true
         service
             .loadAll()
-            .sink { completion in
+            .sink { [weak self] completion in
+                self?.isLoading = false
                 switch completion {
                 case .finished: break
                 case .failure(let error):
@@ -59,25 +62,5 @@ final class TeamMemberListViewModel: ObservableObject {
                 }
             } receiveValue: { _ in }
             .store(in: &cancellables)
-    }
-}
-
-final class MockTeamMemberListDecorator: HTTPClient {
-    private var mockHttpClient: MockHTTPClient
-    
-    init() {
-        let mockData = MockHTTPClient.mockData(object: TeamMember.sampleMembers)
-        let mockHttpResponse = HTTPURLResponse(
-            url: URL(string: "https://example.com")!,
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: nil
-        )!
-        self.mockHttpClient = MockHTTPClient()
-        self.mockHttpClient.mockResponse = (mockData, mockHttpResponse)
-    }
-    
-    func publisher(request: URLRequest) -> AnyPublisher<(Data, HTTPURLResponse), Error> {
-        mockHttpClient.publisher(request: request)
     }
 }

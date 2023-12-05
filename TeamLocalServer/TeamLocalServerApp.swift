@@ -11,7 +11,7 @@ import SwiftUI
 struct TeamLocalServerApp: App {
     var body: some Scene {
         WindowGroup {
-            TeamMemberListView(vm: .init(httpClient: MockTeamMemberListDecorator()))
+            TeamMemberListView(vm: .init())
         }
     }
 }

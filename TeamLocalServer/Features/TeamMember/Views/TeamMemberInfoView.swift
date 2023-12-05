@@ -11,72 +11,108 @@ struct TeamMemberInfoView: View {
     
     @ObservedObject var vm: TeamMemberInfoViewModel
     
+    @State private var showEditingView = false
+    
     var body: some View {
         ScrollView {
-            VStack {
-                HStack {
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .foregroundStyle(AppColors.darkGray)
-                        .frame(width: 50, height: 50)
-                        .padding()
-                        .background(AppColors.lightGray, in: .circle)
-                    VStack(alignment: .leading) {
-                        Text("Donald J.T.")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        Text("Mobile Developer")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .fontWeight(.light)
-                    }
+            ZStack {
+                VStack {
+                    header
+                    Divider()
+                    infoContent
+                    Divider()
+                    editButton
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
-                Divider()
-                VStack(spacing: 20) {
-                    VStack(alignment: .leading, spacing: 5) {
-                        SectionTitleText("Full Name")
-                        Text("First Second Middle")
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        SectionTitleText("Role")
-                        Text("Mobile Developer")
-                            .bold()
-                            .padding(5)
-                            .padding(.horizontal, 7)
-                            .background(.orange.gradient, in: .rect(cornerRadius: 10))
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        SectionTitleText("Hiring date")
-                        Text("23 September, 2023")
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        SectionTitleText("Working for")
-                        Text("180 days")
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                }.padding()
-                Divider()
-                Button {
-                    
-                } label: {
-                    Text("Edit")
-                        .bold()
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(10)
-                        .background(.blue, in: .rect(cornerRadius: 10))
-                        .padding(.horizontal)
-                }.buttonStyle(.plain)
-            }.padding(.top, 40)
+                .padding(.top)
+                .withLoading("Loading Team Member", isLoading: vm.isLoading)
+            }
         }
+        .refreshable {
+            vm.load()
+        }
+        .onAppear {
+            vm.load()
+        }
+        .sheet(isPresented: $showEditingView, onDismiss: vm.load, content: {
+            if let teamMember = vm.teamMember {
+                TeamMemberEditView(vm: .init(
+                    id: vm.teamMemberId,
+                    teamMember: teamMember,
+                    service: vm.service)
+                )
+            }
+        })
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    let client = MockTeamMemberHTTPDecorator()
-    return TeamMemberInfoView(vm: .init(teamMemberId: 0, httpClient: client))
+    TeamMemberInfoView(
+        vm: .init(
+            teamMemberId: 1,
+            service: MockTeamMemberService()
+        )
+    )
+}
+
+extension TeamMemberInfoView {
+    private var header: some View {
+        HStack {
+            Image(systemName: "person.fill")
+                .resizable()
+                .foregroundStyle(AppColors.darkGray)
+                .frame(width: 50, height: 50)
+                .padding()
+                .background(AppColors.lightGray, in: .circle)
+            VStack(alignment: .leading) {
+                Text(vm.initials())
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                Text(vm.role())
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.light)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading)
+    }
+    
+    private var infoContent: some View {
+        VStack(spacing: 20) {
+            SectionedView(sectionName: "Full Name") {
+                Text(vm.fullName())
+            }
+            
+            SectionedView(sectionName: "Role") {
+                Text(vm.role())
+                    .bold()
+                    .padding(5)
+                    .padding(.horizontal, 7)
+                    .background(.orange.gradient, in: .rect(cornerRadius: 10))
+            }
+            
+            SectionedView(sectionName: "Hiring date") {
+                Text(vm.hiringDate())
+            }
+            
+            SectionedView(sectionName: "Working for") {
+                Text(vm.workingFor())
+            }
+        }.padding()
+    }
+    
+    private var editButton: some View {
+        Button {
+            showEditingView.toggle()
+        } label: {
+            Text("Edit")
+                .bold()
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .padding(12)
+                .background(.blue, in: .rect(cornerRadius: 10))
+                .padding(.horizontal)
+        }.buttonStyle(.plain)
+    }
 }
