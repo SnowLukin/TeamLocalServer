@@ -12,9 +12,9 @@ protocol HTTPClient {
     func publisher(request: URLRequest) -> AnyPublisher<(Data, HTTPURLResponse), Error>
 }
 
+struct InvalidHTTPResponseError: Error {}
+
 extension URLSession: HTTPClient {
-    struct InvalidHTTPResponseError: Error {}
-    
     func publisher(request: URLRequest) -> AnyPublisher<(Data, HTTPURLResponse), Error> {
         return dataTaskPublisher(for: request)
             .tryMap({ result in
@@ -28,23 +28,18 @@ extension URLSession: HTTPClient {
 }
 
 final class MockHTTPClient: HTTPClient {
-    
     var response: (Data, HTTPURLResponse)?
     var error: Error?
-
+    
     func publisher(request: URLRequest) -> AnyPublisher<(Data, HTTPURLResponse), Error> {
         if let error = error {
             return Fail(error: error).eraseToAnyPublisher()
         }
-
         if let response = response {
             return Just(response)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-
-        return Empty(completeImmediately: false)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        return Fail(error: InvalidHTTPResponseError()).eraseToAnyPublisher()
     }
 }
