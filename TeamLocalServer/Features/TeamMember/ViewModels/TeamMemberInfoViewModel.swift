@@ -71,15 +71,19 @@ final class TeamMemberInfoViewModel: ObservableObject {
     }
     
     func hiringDate() -> String {
-        teamMember?.hiringDate.teamMemberFormat() ?? "No data"
+        teamMember?.hiringDate?.teamMemberFormat() ?? "No data"
     }
     
     func role() -> String {
         teamMember?.role ?? "No data"
     }
     
+    func spec() -> String {
+        teamMember?.specialization ?? "No data"
+    }
+    
     func workingFor() -> String {
-        guard var days = teamMember?.hiringDate.daysFromToday() else {
+        guard var days = teamMember?.hiringDate?.daysFromToday() else {
             return "No data"
         }
         // if the date was before today then we want to see positive number

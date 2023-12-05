@@ -14,8 +14,7 @@ protocol NetworkSession: AnyObject {
 
 extension URLSession: NetworkSession {
     func publisher<T>(_ request: URLRequest, decodingType: T.Type) -> AnyPublisher<T, ApiError> where T : Decodable {
-        var newRequest = request
-        return dataTaskPublisher(for: newRequest)
+        dataTaskPublisher(for: request)
             .tryMap({ result in
                 guard let httpResponse = result.response as? HTTPURLResponse else {
                     throw ApiError.requestFailed
@@ -29,7 +28,7 @@ extension URLSession: NetworkSession {
                     throw ApiError.emptyErrorWithStatusCode(httpResponse.statusCode.description)
                 }
             })
-            .decode(type: T.self, decoder: JSONDecoder().snakeCased())
+            .decode(type: T.self, decoder: JSONDecoder.teamMemberDecoder().snakeCased())
             .mapError { error -> ApiError in
                 if let error = error as? ApiError {
                     return error

@@ -16,6 +16,7 @@ extension TeamMember {
             surname: "Johnson",
             middleName: "Marie",
             role: "Developer",
+            specialization: "Mobile",
             hiringDate: Date(timeIntervalSince1970: 1579056000)
         )
     }
@@ -28,6 +29,7 @@ extension TeamMember {
                 surname: "Johnson",
                 middleName: "Marie",
                 role: "Developer",
+                specialization: "Mobile",
                 hiringDate: Date(timeIntervalSince1970: 1579056000)
             ),
             TeamMember(
@@ -36,6 +38,7 @@ extension TeamMember {
                 surname: "Smith",
                 middleName: "Andrew",
                 role: "Designer",
+                specialization: "Backend",
                 hiringDate: Date(timeIntervalSince1970: 1560134400)
             ),
             TeamMember(
@@ -44,6 +47,7 @@ extension TeamMember {
                 surname: "Davis",
                 middleName: "Lee",
                 role: "Project Manager",
+                specialization: "All",
                 hiringDate: Date(timeIntervalSince1970: 1616371200)
             )
         ]

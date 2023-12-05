@@ -53,12 +53,11 @@ extension TeamMemberListView {
                 showCreateMember.toggle()
             } label: {
                 Image(systemName: "plus")
-                    .font(.title2)
+                    .fontWeight(.semibold)
                     .foregroundStyle(.white)
-                    .padding(12)
-                    .background(.blue, in: .circle)
-                    .padding()
-            }
+                    .frame(width: 55, height: 55)
+                    .background(.blue.shadow(.drop(color: .black.opacity(0.25), radius: 5, x: 10, y: 10)), in: .circle)
+            }.padding(15)
         }
     }
     
@@ -66,7 +65,12 @@ extension TeamMemberListView {
         Section("Members") {
             ForEach(vm.teamMembers) { member in
                 NavigationLink {
-                    TeamMemberInfoView(vm: .init(teamMemberId: member.id, service: vm.service))
+                    TeamMemberInfoView(
+                        vm: .init(
+                            teamMemberId: member.id.withDefaultValue(-1),
+                            service: vm.service
+                        )
+                    )
                 } label: {
                     HStack {
                         Image(systemName: "person.fill")
@@ -76,7 +80,7 @@ extension TeamMemberListView {
                             .background(AppColors.lightGray, in: .circle)
                         VStack(alignment: .leading) {
                             Text(member.fullName)
-                            Text(member.role)
+                            Text(member.role.withDefaultValue())
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }.padding(.leading, 5)
@@ -85,7 +89,7 @@ extension TeamMemberListView {
             }.onDelete { indexSet in
                 withAnimation {
                     indexSet.forEach { index in
-                        let id = vm.teamMembers[index].id
+                        let id = vm.teamMembers[index].id.withDefaultValue(-1)
                         vm.deleteTeamMember(by: id)
                     }
                     vm.teamMembers.remove(atOffsets: indexSet)

@@ -16,14 +16,39 @@ struct TeamMemberEditView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 10) {
-                    SectionedTextField(title: "Name", placeholder: "Name", text: $vm.nameTF)
-                    SectionedTextField(title: "Surname", placeholder: "Surname", text: $vm.surnameTF)
-                    SectionedTextField(title: "Middle Name", placeholder: "Middle Name", text: $vm.middleNameTF)
-                    SectionedTextField(title: "Role", placeholder: "Role", text: $vm.roleTF)
+                    SectionedTextField(
+                        title: "Name",
+                        placeholder: "Name",
+                        text: $vm.nameTF
+                    )
+                    SectionedTextField(
+                        title: "Surname",
+                        placeholder: "Surname",
+                        text: $vm.surnameTF
+                    )
+                    SectionedTextField(
+                        title: "Middle Name",
+                        placeholder: "Middle Name",
+                        text: $vm.middleNameTF
+                    )
+                    SectionedTextField(
+                        title: "Role",
+                        placeholder: "Role",
+                        text: $vm.roleTF
+                    )
+                    SectionedTextField(
+                        title: "Specialization",
+                        placeholder: "Specialization",
+                        text: $vm.specTF
+                    )
                     SectionedView(sectionName: "Hiring Date") {
-                        DatePicker("", selection: $vm.hiringDate, in: ...Date.now, displayedComponents: .date)
-                            .labelsHidden()
-                            .datePickerStyle(.compact)
+                        DatePicker(
+                            "", selection: $vm.hiringDate,
+                            in: ...Date.now,
+                            displayedComponents: .date
+                        )
+                        .labelsHidden()
+                        .datePickerStyle(.compact)
                     }
                 }.padding()
             }
@@ -32,7 +57,7 @@ struct TeamMemberEditView: View {
             .overlay(alignment: .bottom) {
                 ZStack {
                     Button {
-                        vm.handleSaving()
+                        vm.onSave()
                         dismiss()
                     } label: {
                         Text("Save")
@@ -48,7 +73,6 @@ struct TeamMemberEditView: View {
                 .padding(.vertical)
                 .background(AppColors.secondaryBackground)
             }
-            
             .toolbar {
                 Button("Cancel") {
                     dismiss()

@@ -10,7 +10,7 @@ import Combine
 
 final class TeamMemberEditViewModel: ObservableObject {
     
-    let id: Int?
+    let teamMemberId: Int?
     let teamMember: TeamMember?
     private let service: TeamMemberServiceProtocol
     
@@ -18,39 +18,31 @@ final class TeamMemberEditViewModel: ObservableObject {
     @Published var surnameTF = ""
     @Published var middleNameTF = ""
     @Published var roleTF = ""
+    @Published var specTF = ""
     @Published var hiringDate = Date.now
     
     private var cancellables = Set<AnyCancellable>()
     
     init(id: Int? = nil, teamMember: TeamMember? = nil, service: TeamMemberServiceProtocol = TeamMemberService()) {
-        self.id = id
+        self.teamMemberId = id
         self.teamMember = teamMember
         self.service = service
         
-        if let teamMember {
-            setup(with: teamMember)
-        }
+        setup(with: teamMember)
     }
     
-    func handleSaving() {
-        if let teamMember {
-            updateMember(teamMember)
+    func onSave() {
+        let newTeamMember = createNewTeamMember(with: teamMemberId)
+        if teamMemberId != nil {
+            updateMember(newTeamMember)
         } else {
-            createMember()
+            createMember(newTeamMember)
         }
     }
     
-    private func createMember() {
-        let newTeamMember = TeamMember(
-            id: 0,
-            name: nameTF,
-            surname: surnameTF,
-            middleName: middleNameTF,
-            role: roleTF,
-            hiringDate: hiringDate
-        )
+    private func createMember(_ teamMember: TeamMember) {
         service
-            .create(newTeamMember)
+            .create(teamMember)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -65,17 +57,8 @@ final class TeamMemberEditViewModel: ObservableObject {
     }
     
     private func updateMember(_ teamMember: TeamMember) {
-        let updatedTeamMember = TeamMember(
-            id: teamMember.id,
-            name: nameTF,
-            surname: surnameTF,
-            middleName: middleNameTF,
-            role: roleTF,
-            hiringDate: hiringDate
-        )
-        
         service
-            .update(updatedTeamMember)
+            .update(teamMember)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -89,11 +72,25 @@ final class TeamMemberEditViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    private func setup(with teamMember: TeamMember) {
-        nameTF = teamMember.name
-        surnameTF = teamMember.surname
-        middleNameTF = teamMember.middleName
-        roleTF = teamMember.role
-        hiringDate = teamMember.hiringDate
+    private func setup(with teamMember: TeamMember?) {
+        guard let teamMember else { return }
+        nameTF = teamMember.name.withDefaultValue()
+        surnameTF = teamMember.surname.withDefaultValue()
+        middleNameTF = teamMember.middleName.withDefaultValue()
+        roleTF = teamMember.role.withDefaultValue()
+        specTF = teamMember.specialization.withDefaultValue()
+        hiringDate = teamMember.hiringDate ?? .now
+    }
+    
+    private func createNewTeamMember(with id: Int?) -> TeamMember {
+        TeamMember(
+            id: id.withDefaultValue(-1),
+            name: nameTF,
+            surname: surnameTF,
+            middleName: middleNameTF,
+            role: roleTF,
+            specialization: specTF,
+            hiringDate: hiringDate
+        )
     }
 }

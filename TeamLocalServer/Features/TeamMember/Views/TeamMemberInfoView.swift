@@ -86,6 +86,10 @@ extension TeamMemberInfoView {
             
             SectionedView(sectionName: "Role") {
                 Text(vm.role())
+            }
+            
+            SectionedView(sectionName: "Specialization") {
+                Text(vm.spec())
                     .bold()
                     .padding(5)
                     .padding(.horizontal, 7)

@@ -19,6 +19,7 @@ struct LoaderModifier: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             content
+                .disabled(isLoading)
                 .blur(radius: isLoading ? 2 : 0)
             if isLoading {
                 ProgressView(loaderTitle)
