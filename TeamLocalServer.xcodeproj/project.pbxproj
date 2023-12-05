@@ -153,10 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				D7E65DFA2B1F968C0001F45D /* Components */,
-				D72DEBEF2B1F27A00034B612 /* Modifiers */,
 				D72DEBE02B1E2A910034B612 /* Extensions */,
 				D7EC27E52B1A1EE500065A0E /* Resources */,
-				D7EC27C82B19D04C00065A0E /* Services */,
 				D7EC27C12B19C0FE00065A0E /* Network */,
 			);
 			path = Core;
@@ -165,11 +163,20 @@
 		D7E65DFA2B1F968C0001F45D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D7E65DFC2B1F9F830001F45D /* Views */,
+				D72DEBEF2B1F27A00034B612 /* Modifiers */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D7E65DFC2B1F9F830001F45D /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				D7EC27EF2B1A6D7A00065A0E /* SectionTitleText.swift */,
 				D7EC27ED2B1A6D6200065A0E /* SectionedTextField.swift */,
 				D72DEBEB2B1E41320034B612 /* SectionedView.swift */,
 			);
-			path = Components;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D7EC278B2B19C0C300065A0E = {
@@ -198,8 +205,6 @@
 				D7EC27972B19C0C300065A0E /* TeamLocalServerApp.swift */,
 				D7E65DF92B1F96690001F45D /* Core */,
 				D7EC27D92B19DE4F00065A0E /* Features */,
-				D7EC279B2B19C0C400065A0E /* Assets.xcassets */,
-				D7EC279D2B19C0C400065A0E /* Preview Content */,
 			);
 			path = TeamLocalServer;
 			sourceTree = "<group>";
@@ -232,21 +237,14 @@
 		D7EC27C12B19C0FE00065A0E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D7EC27D52B19DB8300065A0E /* GenericApiHTTPRequestMapper.swift */,
+				D7EC27CF2B19D1D400065A0E /* ApiEndpoint.swift */,
 				D7EC27D72B19DC0500065A0E /* HTTPClient.swift */,
 				D7EC27C22B19C11000065A0E /* NetworkSession.swift */,
 				D7EC27C42B19C50900065A0E /* ApiError.swift */,
 				D7EC27C62B19C52A00065A0E /* HTTPMethod.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		D7EC27C82B19D04C00065A0E /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D7EC27CF2B19D1D400065A0E /* ApiEndpoint.swift */,
-				D7EC27D52B19DB8300065A0E /* GenericApiHTTPRequestMapper.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		D7EC27CA2B19D08800065A0E /* Models */ = {
@@ -310,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				D7EC27E62B1A1EEC00065A0E /* AppColors.swift */,
+				D7EC279B2B19C0C400065A0E /* Assets.xcassets */,
+				D7EC279D2B19C0C400065A0E /* Preview Content */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TeamLocalServer/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TeamLocalServer/Core/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = AUP52MS6LU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -662,7 +662,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TeamLocalServer/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TeamLocalServer/Core/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = AUP52MS6LU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
