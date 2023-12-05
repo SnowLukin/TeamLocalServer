@@ -36,6 +36,8 @@ extension ApiEndpoint {
         longPath.append("/")
         longPath.append(path)
         
+        urlComponents?.path = longPath
+        
         if let queryItems {
             urlComponents?.queryItems = []
             queryItems.forEach {

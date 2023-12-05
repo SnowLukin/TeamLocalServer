@@ -32,6 +32,7 @@ struct TeamMemberEditView: View {
             .overlay(alignment: .bottom) {
                 ZStack {
                     Button {
+                        vm.handleSaving()
                         dismiss()
                     } label: {
                         Text("Save")

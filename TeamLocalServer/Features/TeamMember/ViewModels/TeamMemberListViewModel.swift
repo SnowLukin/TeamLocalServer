@@ -25,6 +25,7 @@ final class TeamMemberListViewModel: ObservableObject {
         isLoading = true
         service
             .loadAll()
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 self?.isLoading = false
                 switch completion {
@@ -41,6 +42,7 @@ final class TeamMemberListViewModel: ObservableObject {
     func deleteTeamMembers() {
         service
             .deleteAll()
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished: break
@@ -54,6 +56,7 @@ final class TeamMemberListViewModel: ObservableObject {
     func deleteTeamMember(by id: Int) {
         service
             .delete(by: id)
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished: break

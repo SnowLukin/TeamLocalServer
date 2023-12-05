@@ -51,6 +51,7 @@ final class TeamMemberEditViewModel: ObservableObject {
         )
         service
             .create(newTeamMember)
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished: break
@@ -64,8 +65,18 @@ final class TeamMemberEditViewModel: ObservableObject {
     }
     
     private func updateMember(_ teamMember: TeamMember) {
+        let updatedTeamMember = TeamMember(
+            id: teamMember.id,
+            name: nameTF,
+            surname: surnameTF,
+            middleName: middleNameTF,
+            role: roleTF,
+            hiringDate: hiringDate
+        )
+        
         service
-            .update(teamMember)
+            .update(updatedTeamMember)
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished: break

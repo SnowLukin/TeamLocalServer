@@ -27,6 +27,7 @@ final class TeamMemberInfoViewModel: ObservableObject {
             isLoading = true
             service
                 .load(by: teamMemberId)
+                .receive(on: DispatchQueue.main)
                 .sink { [weak self] completion in
                     self?.isLoading = false
                     switch completion {
@@ -47,6 +48,7 @@ final class TeamMemberInfoViewModel: ObservableObject {
         isLoading = true
         service
             .update(teamMember)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 self?.isLoading = false
                 switch completion {

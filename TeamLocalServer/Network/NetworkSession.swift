@@ -15,7 +15,6 @@ protocol NetworkSession: AnyObject {
 extension URLSession: NetworkSession {
     func publisher<T>(_ request: URLRequest, decodingType: T.Type) -> AnyPublisher<T, ApiError> where T : Decodable {
         var newRequest = request
-        newRequest.allHTTPHeaderFields?.removeValue(forKey: "Authorization")
         return dataTaskPublisher(for: newRequest)
             .tryMap({ result in
                 guard let httpResponse = result.response as? HTTPURLResponse else {
@@ -30,7 +29,7 @@ extension URLSession: NetworkSession {
                     throw ApiError.emptyErrorWithStatusCode(httpResponse.statusCode.description)
                 }
             })
-            .decode(type: T.self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: JSONDecoder().snakeCased())
             .mapError { error -> ApiError in
                 if let error = error as? ApiError {
                     return error

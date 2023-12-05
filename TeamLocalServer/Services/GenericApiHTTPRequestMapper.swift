@@ -11,7 +11,11 @@ struct GenericApiHTTPRequestMapper {
     static func map<T>(data: Data, response: HTTPURLResponse) throws -> T where T: Decodable {
         if (200..<300) ~= response.statusCode {
             do {
-                return try JSONDecoder().snakeCased().decode(T.self, from: data)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let decoder = JSONDecoder().snakeCased()
+                decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                return try decoder.decode(T.self, from: data)
             } catch {
                 throw ApiError.basicError(error)
             }

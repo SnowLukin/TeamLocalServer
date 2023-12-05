@@ -18,7 +18,8 @@ enum TeamMemberProvider {
 
 extension TeamMemberProvider: ApiEndpoint {
     var baseUrlString: String {
-        "http://localhost:8080"
+//        "http://localhost:8080"
+        "http://172.20.10.3:8080"
     }
     
     var apiPath: String {
@@ -79,7 +80,18 @@ extension TeamMemberProvider: ApiEndpoint {
         case .getMembers, .getMember, .deleteMembers, .deleteMember:
             return nil
         case .createMember(let teamMember), .update(let teamMember):
-            return try? JSONEncoder().snakeCased().encode(teamMember)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(dateFormatter)
+            do {
+                let encodedData = try encoder.encode(teamMember)
+                print(String(data: encodedData, encoding: .utf8) ?? "Failed to encode data")
+                return encodedData
+            } catch {
+                debugPrint(error.localizedDescription)
+                return nil
+            }
         }
     }
 }
